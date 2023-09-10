@@ -1,5 +1,7 @@
 # Singleton Pattern
 
+The Singleton pattern is frequently used in Unity development, especially for managing game state, audio systems, game managers, and other unique components that should be instantiated once and remain available throughout the game. As with many design patterns, there are advantages and disadvantages associated with its use. Here's a breakdown of the ups and downs of using the Singleton pattern in Unity:
+
 ## Sample Code
 
 ### Basic Implementation
@@ -82,8 +84,6 @@ public class GameManager : Singleton<GameManager>
 ```
 
 ## UPs and DOWNs
-
-The Singleton pattern is frequently used in Unity development, especially for managing game state, audio systems, game managers, and other unique components that should be instantiated once and remain available throughout the game. As with many design patterns, there are advantages and disadvantages associated with its use. Here's a breakdown of the ups and downs of using the Singleton pattern in Unity:
 
 ### UPs
 
