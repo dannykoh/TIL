@@ -9,6 +9,7 @@
 1. 중단점에서 오른쪽 클릭 후 "조건(condition)" 선택
 2. 이어서 열리는 설정 창에 필요한 조건식을 입력 후 적용한다.
 
+[//]: <> (주의! Github에서는 inline style을 지원하지 않기 때문에 이미지가 의도와 다르게 렌더링됨.)
 <figure style="text-align: center;">
 <img src="./Images/EditBreakpoint.png" width="450">
 <figcaption>(Visual Studio for Mac의 예시)</figcaption>
