@@ -5,7 +5,7 @@
 스택은 함수,지역변수,매개변수가 저장되며 LIFO 방식으로 관리되지만 힙 영역은 전역 변수를 다루며 사용자가 직접 관리해야 하는 메모리 영역입니다.
 
 ## 그림
-<img src="./images/stack_heap.png" width="600">
+<img src="./Images/stack_heap.png" width="600">
 
 ## 스택
 * 정적 메모리 할당
