@@ -143,6 +143,27 @@ namespace CSharp
     }
 }
 ```
+### Action 사용 에제
+```csharp
+using System;
+
+class Program
+{
+    // Action 델리게이트를 사용하여 반환 타입이 없는 메서드 참조를 정의한다.
+    static Action<string> Greet = (name) =>
+    {
+        Console.WriteLine($"안녕하세요, {name}!");
+    };
+
+    static void Main()
+    {
+        // Action 델리게이트를 사용하여 메서드 호출
+        Greet("Alice"); // "안녕하세요, Alice!" 출력
+        Greet("Bob");   // "안녕하세요, Bob!" 출력
+    }
+}
+
+```
 
 ### 정리
 - delegate를 직접 선언하지 않아도 이미 만들어진 애들이 존재한다
