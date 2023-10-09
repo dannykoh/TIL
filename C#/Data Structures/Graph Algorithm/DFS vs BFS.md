@@ -83,4 +83,91 @@
         ```
 
 
-- **BFS: Breadth-First Search 너비 우선 탐색**<br><br>
+- **BFS: Breadth-First Search 너비 우선 탐색**
+
+    **너비우선탐색** - 루트 노드(혹은 다른 임의의 노드)에서 시작해서 인접한 노드를 먼저 탐색하는 방법
+
+    - 시작 정점으로부터 가까운 정점을 먼저 방문하고 멀리 떨어져 있는 정점을 나중에 방문하는 순회 방법이다. 
+    - 즉, 깊게(deep) 탐색하기 전에 넓게(wide) 탐색하는 것이다.
+    - Best Use Case 두 노드 사이의 최단 경로 혹은 임의의 경로를 찾고 싶을 때 이 방법을 선택한다.
+    
+    **BFS의 특징**
+    - 직관적이지 않은면이 있다.
+    - 재귀적으로 작동하지 않는다.
+    - 그래프 탐색의 경우 어떤 노드를 방문했었는지 여부를 반드시 검사 해야 한다.
+    - BFS는 방문한 노드들을 차례로 저장한 후 꺼낼 수 있는 자료 구조인 큐(Queue)를 사용한다.
+
+    **구현**
+    
+```csharp
+    using System;
+
+    namespace Exercise
+    {
+        // Stack : LIFO (Last In, First Out)
+        // Queue : FIFO (First In, First Out)
+
+        class Graph
+        {
+            int[,] adj = new int[6, 6]
+            {
+                {0, 1, 0, 1, 0, 0 },
+                {1, 0, 1, 1, 0, 0 },
+                {0, 1, 0, 0, 0, 0 },
+                {1, 1, 0, 0, 1, 0 },
+                {0, 0, 0, 1, 0, 1 },
+                {0, 0, 0, 0, 1, 0 },
+            };
+
+            List<int>[] adj2 = new List<int>[]
+            {
+                new List<int>() { 1, 3 },
+                new List<int>() { 0, 2, 3 },
+                new List<int>() { 1 },
+                new List<int>() { 0, 1, 4 },
+                new List<int>() { 3, 5 },
+                new List<int>() { 4 }
+            };
+
+            public void BFS(int start)
+            {
+                // Check if eash node is visited
+                bool[] found = new bool[6];
+
+                // Start point
+                Queue<int> q = new Queue<int>();
+                q.Enqueue(start);
+                found[start] = true;
+
+                while (q.Count > 0)
+                {
+                    int current = q.Dequeue();
+                    Console.WriteLine(current);
+
+                    for (int next = 0; next < 6; next++)
+                    {
+                        if (adj[current, next] == 0) // No node connection
+                            continue;
+                        if (found[next] == true) // Next node already found
+                            continue;
+
+                        // Add next to the Queue because, at this point, we are sure that it's never been found.
+                        q.Enqueue(next);
+                        found[next] = true;
+                    }
+                }
+            }
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                // BFS (Breadth First Search - 너비 우선 탐색)
+                Graph graph = new Graph();
+                graph.BFS(0);
+                Console.Read();
+            }
+        }
+    }
+    ```
