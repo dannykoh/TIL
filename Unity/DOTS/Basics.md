@@ -13,7 +13,7 @@ Enables taking advantage of multi-core processors (multi-threading) in order to 
 Unity C# Job system automatically manages those threads and assign jobs to the thread via a simple code.
 
 ### Entities Component System
-It's all about separating the logic and the data. 
+It's all about separating the logic and the data.
 
 Entity has its own component which holds the data.<br>
 <img src="../Images/DOTS_entity.png" width=400>
