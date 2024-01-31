@@ -49,3 +49,100 @@ Let's consider you're working with strings and you often need to check if a stri
 - **Flexibility**: Useful for adding methods to classes that you cannot modify, such as sealed classes or classes in third-party libraries.
 
 In summary, extension methods in C# provide a flexible and powerful way to add functionality to existing types, enhancing the expressiveness and capabilities of your code without modifying the original types.
+
+## Some Useful Unity C# Extension Methods
+
+### 1. Converting from Vector3 to Vector3Int
+
+```cs
+public static Vector3Int ConvertToVector3(this Vector3 vec3)
+{
+   return new Vector3Int((int)vec3.x, (int)vec3.y, (int)vec3.z);
+}
+```
+### 2. Resetting the Transform
+```cs
+public static void ResetTransformation(this Transform trans)
+{
+   trans.position = Vector3.zero;
+   trans.localRotation = Quaternion.identity;
+   trans.localScale = new Vector3(1, 1, 1);
+}
+```
+### 3. Rotating a 2D Vector
+```cs
+public static Vector2 Rotate(this Vector2 vector, float degrees)
+{
+   float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+   float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+   float tx = vector.x;
+   float ty = vector.y;
+   vector.x = (cos * tx) - (sin * ty);
+   vector.y = (sin * tx) + (cos * ty);
+   return vector;
+}
+```
+### 4. Returning a normalized degree value
+```cs
+public static float RotationNormalizedDeg(this float rotation)
+{
+   rotation = rotation % 360f;
+   if (rotation < 0)
+       rotation += 360f;
+   return rotation;
+}
+```
+### 5. Setting children layer value recursively
+```cs
+public static void SetLayerRecursively(this GameObject gameObject, int layer)
+{
+   gameObject.layer = layer;
+   foreach (Transform t in gameObject.transform)
+        t.gameObject.SetLayerRecursively(layer);
+}
+```
+### 6. Checks if GameObject has a certain component
+```cs
+public static bool HasComponent(this Component component) where T : Component
+{
+   return component.GetComponent() != null;
+}
+```
+### 7. Destroys all children recursively of a GameObject
+```cs
+public static void DestroyChildren(this GameObject parent)
+{
+   Transform[] children = new Transform[parent.transform.childCount];
+   for (int i = 0; i < parent.transform.childCount; i++)
+        children[i] = parent.transform.GetChild(i);
+   for (int i = 0; i < children.Length; i++)
+        GameObject.Destroy(children[i].gameObject);
+}
+```
+### 8. Children of one GameObject gets transferred to another GameObject
+```cs
+public static void MoveChildren(this GameObject from, GameObject to)
+{
+    Transform[] children = new Transform[from.transform.childCount];
+    for (int i = 0; i < from.transform.childCount; i++)
+         children[i] = from.transform.GetChild(i);
+    for (int i = 0; i < children.Length; i++)
+         children[i].SetParent(to.transform);
+}
+```
+### 9. Checks if Renderer can be seen by camera
+```cs
+public static bool IsVisibleFrom(this Renderer renderer, Camera camera)
+{
+   var planes = GeometryUtility.CalculateFrustumPlanes(camera);
+   return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
+}
+```
+### 10. Checks if a Rect component intersects another Rect
+```cs
+public static bool Intersects(this Rect source, Rect rect)
+{
+   return !((source.x > rect.xMax) || (source.xMax < rect.x) || (source.y > rect.yMax) || (source.yMax < rect.y));
+} 
+```
