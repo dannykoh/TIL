@@ -1,6 +1,6 @@
 # Heap Tree (힙트리)
 
-<img src="../Images/heap_tree.png" width=500px>
+<img src="./Images/heap_tree.png" width=500px>
 
 ### 규칙 
 1. 이진검색 트리보다 제약사항이 약한데, 부모가 가진 값이 자식이 가진 값보다 크기만 하면 된다.<br>즉, 양쪽 자식간에는 특별한 규칙이 없다. 따라서 root에 있는 노드가 항상 **최대값!**
@@ -23,10 +23,10 @@
 ### 최대값을 꺼낼 때
 
 1. 최대값을 꺼내서 제거한다.<br>
-<img src="../Images/heap_tree_max1.png" width=400>
+<img src="./Images/heap_tree_max1.png" width=400>
 
 2. 제일 마지막에 있는 노드를 루트로 올려준다 (이 경우엔 14)<br>
-<img src="../Images/heap_tree_max2.png" width=400>
+<img src="./Images/heap_tree_max2.png" width=400>
 
 3. '역'도장깨기를 한다. 즉, 루트부터 작은 값을 대치하면서 내려간다.<br>
-<img src="../Images/heap_tree_max3.png" width=400>
+<img src="./Images/heap_tree_max3.png" width=400>
